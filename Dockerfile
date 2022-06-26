@@ -1,4 +1,5 @@
-FROM python:alpine
+FROM python
+# :alpine
 
 ENV PYTHONFAULTHANDLER=1 \
     PYTHONUNBUFFERED=1 \
@@ -8,7 +9,7 @@ ENV PYTHONFAULTHANDLER=1 \
     PIP_DEFAULT_TIMEOUT=100
 
 # System deps:
-RUN apk update && apk add -U --no-cache build-base ca-certificates libffi-dev openssl-dev cargo
+# RUN apk update && apk add -U --no-cache build-base ca-certificates libffi-dev openssl-dev cargo
 
 # Copy only requirements to cache them in docker layer
 WORKDIR /pyatv-api
