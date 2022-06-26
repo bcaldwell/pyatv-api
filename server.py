@@ -53,7 +53,7 @@ def web_command(method):
         atv = request.app["atv"].get(device_id)
         if not atv:
             try:
-                if "auto_connect" in request.headers:
+                if "auto-connect" in request.headers:
                     atv = await _connect(request)
                 else:
                     return web.Response(text=f"Not connected to {device_id}, enabled auto_connect by setting auto_connect header", status=500)
@@ -68,7 +68,7 @@ def add_credentials(config, headers):
     """Add credentials to pyatv device configuration."""
     for service in config.services:
         proto_name = service.protocol.name.lower()
-        key = f"{proto_name}_credentials"
+        key = f"{proto_name}-credentials"
         if key not in headers:
             continue
         config.set_credentials(service.protocol, headers[key].strip())
